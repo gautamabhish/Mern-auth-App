@@ -5,10 +5,13 @@ import About from "./Components/About.jsx"
 import Profile from "./Components/Profile.jsx"
 import SignIn from "./Components/SignIn.jsx"
 import SignUp from "./Components/SignUp.jsx"
+import Header from './Components/header.jsx'
 
 const App = () => {
   return (
     <BrowserRouter>
+    {/* header */}
+    <Header></Header>
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/about' element={<About />}/>
