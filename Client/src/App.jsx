@@ -6,6 +6,7 @@ import Profile from "./Components/Profile.jsx"
 import SignIn from "./Components/SignIn.jsx"
 import SignUp from "./Components/SignUp.jsx"
 import Header from './Components/header.jsx'
+import Privateprofile from './Components/Privateprofile.jsx'
 
 const App = () => {
   return (
@@ -15,10 +16,14 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/about' element={<About />}/>
-        <Route path='/profile' element={<Profile />}/>
         <Route path='/sign-in' element={<SignIn />}/>
         <Route path='/sign-up' element={<SignUp />}/>
+        <Route element = {<Privateprofile/>}>
+          <Route path = '/profile' element = {<Profile/>}></Route>
+        </Route>
       </Routes>
+
+
     </BrowserRouter>
         )
 }
