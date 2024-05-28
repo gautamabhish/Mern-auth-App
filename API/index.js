@@ -1,8 +1,8 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import router from './routes/userRoute.js';
+import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js'
-
+import cookieParser from 'cookie-parser';
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/Mern-auth").then(() => {
@@ -17,9 +17,13 @@ app.listen(3000, () => {
 
 app.use(express.json())
 
-app.use("/auth/user",router);
+app.use(cookieParser())
+
+app.use("/auth/user",userRoute);
 
 app.use("/api/auth",authRoute);
+
+
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500
