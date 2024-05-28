@@ -9,6 +9,7 @@ export const verifyToken = (req, res, next) => {
     jwt.verify(token, 'SECRET KEY', (error, decodedUser) => {
         if (error) return next(errorHandler(403, 'Invalid Token'))
         req.decodedUser = decodedUser
+
         next()
     })
 }

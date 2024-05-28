@@ -50,7 +50,7 @@ export const googleAuth = async (req,res,next)=>{
         const user = await User.findOne({email:req.body.email})
         if(user) {
             const token = jwt.sign({id : user._id},'SECRET KEY')
-            const {password:hashedPassword,_id :id,...rest} = user._doc
+            const {password:hashedPassword,...rest} = user._doc
             const expiryDate  = new Date(Date.now()+3600000)
             res.cookie('access_token',token,{httpOnly : true ,expires : expiryDate}).status(200).json(rest)
             
@@ -76,7 +76,7 @@ export const googleAuth = async (req,res,next)=>{
              await newUser.save()
              const createdUser = await User.findOne({userName})
              const token = jwt.sign({id : createdUser._id},'SECRET KEY')
-            const {password:hashedPasword,_id :id,...rest} = createdUser._doc
+            const {password:hashedPasword,...rest} = createdUser._doc
             const expiryDate  = new Date(Date.now()+3600000)
             res.cookie('access_token',token,{httpOnly : true ,expires : expiryDate}).status(200).json(rest)
         }

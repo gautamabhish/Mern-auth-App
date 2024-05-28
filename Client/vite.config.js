@@ -10,6 +10,10 @@ export default defineConfig({
         target: 'http://localhost:3000',
         secure: false,
       },
+      '/auth': {
+        target: 'http://localhost:3000',
+        secure: false,
+      },
     },
   },
 })
