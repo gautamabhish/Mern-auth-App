@@ -12,7 +12,10 @@ import { useDispatch } from "react-redux";
 import {
   updateUserStart,
   updateUserFailure,
-  updateUserSuccess,deleteUserStart,deleteUserSuccess,deleteUserFailure
+  updateUserSuccess,deleteUserStart,deleteUserSuccess,deleteUserFailure,
+  signOutStart,
+  signOutFailure,
+  signOutSuccess
 } from "../redux/user/userSlice.js";
 
 
@@ -118,7 +121,19 @@ const Profile = () => {
     }
   };
 
+const handleSignOut = async(e)=>{
+  e.preventDefault()
+      try {
+        dispatch(signOutStart())
+        await fetch('/auth/user/sign-out',{
+          method : 'GET',
+        })
+        dispatch(signOutSuccess())
 
+      } catch (error) {
+        dispatch(signOutFailure(error))
+      }
+}
 
   return (
     <div className="max-w-lg mx-auto p-3">
@@ -188,7 +203,7 @@ const Profile = () => {
           <button type="button" onClick = {handleUserDelete} className="text-red-600">
             Delete Account
           </button>
-          <button type="button" className="text-red-600">
+          <button type="button" onClick={handleSignOut} className="text-red-600">
             Sign Out
           </button>
           
