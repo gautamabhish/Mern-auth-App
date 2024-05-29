@@ -16,7 +16,7 @@ app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'client','dist','index.html'))
 })
 
-mongoose.connect(`mongodb+srv://abhishekgautam080470:${process.env.DATABASE}@data.r5uywiq.mongodb.net/?retryWrites=true&w=majority&appName=DATA`).then(() => {
+mongoose.connect(`mongodb+srv://abhishekgautam080470:${process.env.DATABASE}@c1.axqj0ho.mongodb.net/?retryWrites=true&w=majority&appName=c1`).then(() => {
     console.log("connected")
 }).catch((err) => {
     console.log(err)
