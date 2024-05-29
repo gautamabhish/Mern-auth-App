@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon API/index.js",
+    "dev": "node API/index.js",
     "start": "node API/index.js",
     "build": "npm install && npm install --prefix client && npm run build --prefix client "
   },
