@@ -75,7 +75,7 @@ export const googleAuth = async (req,res,next)=>{
            
              await newUser.save()
              const createdUser = await User.findOne({userName})
-             const token = jwt.sign({id : createdUser._id},'SECRET KEY')
+             const token = jwt.sign({id : createdUser._id},process.env.JWT_SECRET)
             const {password:hashedPasword,...rest} = createdUser._doc
             const expiryDate  = new Date(Date.now()+3600000)
             res.cookie('access_token',token,{httpOnly : true ,expires : expiryDate}).status(200).json(rest)

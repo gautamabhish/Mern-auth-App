@@ -3,9 +3,20 @@ import mongoose from 'mongoose'
 import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js'
 import cookieParser from 'cookie-parser';
+import path from 'path'
+import dotenv from 'dotenv'
+dotenv.config();
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/Mern-auth").then(() => {
+const __dirname = path.resolve()
+
+app.use(express.static(path.join(__dirname ,'/client/dist')))
+
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'client','dist','index.html'))
+})
+
+mongoose.connect(`mongodb+srv://abhishekgautam080470:${process.env.DATABASE}@data.r5uywiq.mongodb.net/?retryWrites=true&w=majority&appName=DATA`).then(() => {
     console.log("connected")
 }).catch((err) => {
     console.log(err)

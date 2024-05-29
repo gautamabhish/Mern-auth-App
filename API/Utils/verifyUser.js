@@ -7,7 +7,7 @@ export const verifyToken = (req, res, next) => {
     
     if (!token) return next(errorHandler(401, 'Invalid token'))
 
-    jwt.verify(token, 'SECRET KEY', (error, decodedUser) => {
+    jwt.verify(token, process.env.JWT_SECRET, (error, decodedUser) => {
         if (error) return next(errorHandler(403, 'Verification failed!'))
         req.decodedUser = decodedUser
 
