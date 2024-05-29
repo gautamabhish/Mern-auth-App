@@ -208,9 +208,11 @@ const handleSignOut = async(e)=>{
           </button>
           
         </div>
-        <p className="text-red-600 mt-2 self-center">{error && 'Something went wrong'}</p>
+        {error?
+        <p className="text-red-600 mt-1 self-center">{error && 'Something went wrong'}</p>:
           <p className=" font-bold text-green-500 mt-1 self-center">{updateSuccess && <span>Updated &#x2714;</span>}</p>
-      </form>
+        }
+        </form>
     </div>
     );
   }
