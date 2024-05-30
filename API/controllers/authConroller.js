@@ -49,7 +49,7 @@ export const googleAuth = async (req,res,next)=>{
         
         const user = await User.findOne({email:req.body.email})
         if(user) {
-            const token = jwt.sign({id : user._id},'SECRET KEY')
+            const token = jwt.sign({id : user._id},process.env.JWT_SECRET)
             const {password:hashedPassword,...rest} = user._doc
             const expiryDate  = new Date(Date.now()+3600000)
             res.cookie('access_token',token,{httpOnly : true ,expires : expiryDate}).status(200).json(rest)
